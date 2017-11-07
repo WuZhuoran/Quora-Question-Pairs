@@ -87,13 +87,13 @@ def extract_features(df):
     return df
 
 print("Extracting features for train:")
-train_df = pd.read_csv("data/train.csv")
+train_df = pd.read_csv("../../input/train.csv")
 train_df = extract_features(train_df)
 train_df.drop(["id", "qid1", "qid2", "question1", "question2", "is_duplicate"], axis=1, inplace=True)
-train_df.to_csv("data/nlp_features_train.csv", index=False)
+train_df.to_csv("../../input/nlp_features_train.csv", index=False)
 
 print("Extracting features for test:")
-test_df = pd.read_csv("data/test.csv")
+test_df = pd.read_csv("../../input/test.csv")
 test_df = extract_features(test_df)
 test_df.drop(["test_id", "question1", "question2"], axis=1, inplace=True)
 test_df.to_csv("../../input/nlp_features_test.csv", index=False)

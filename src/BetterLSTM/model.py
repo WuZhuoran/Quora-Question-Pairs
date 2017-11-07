@@ -14,6 +14,7 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.layers.noise import GaussianNoise
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
+import nltk
 
 
 np.random.seed(0)
@@ -25,7 +26,7 @@ REPLACE_WORD = "memento"
 EMBEDDING_DIM = 300
 NUM_FOLDS = 10
 BATCH_SIZE = 1025
-EMBEDDING_FILE = "glove.840B.300d.txt"
+EMBEDDING_FILE = "../../input/glove.840B.300d.txt"
 
 
 def cutter(word):
@@ -105,6 +106,10 @@ def extract_features(df):
         features[i, 3] = len(numbers1.union(numbers2))
 
     return q1s, q2s, features
+
+
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 train = pd.read_csv("../../input/train.csv")
 test = pd.read_csv("../../input/test.csv")

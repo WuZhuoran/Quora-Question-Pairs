@@ -53,7 +53,7 @@ def preprocess(string):
 
 def get_embedding():
     embeddings_index = {}
-    f = open(EMBEDDING_FILE, encoding="ascii")
+    f = open(EMBEDDING_FILE, encoding="latin1")
     for line in f:
         values = line.split()
         word = values[0]

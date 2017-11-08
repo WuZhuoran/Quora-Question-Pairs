@@ -15,6 +15,7 @@ from keras.layers.noise import GaussianNoise
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 import nltk
+import sys
 
 
 np.random.seed(0)
@@ -52,7 +53,7 @@ def preprocess(string):
 
 def get_embedding():
     embeddings_index = {}
-    f = open(EMBEDDING_FILE)
+    f = open(EMBEDDING_FILE, "utf-8")
     for line in f:
         values = line.split()
         word = values[0]

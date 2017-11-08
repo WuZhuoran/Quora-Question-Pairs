@@ -120,11 +120,11 @@ del train_1, test_1, train_2, test_2
 
 print('saving data....')
 f = open('train_F2.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F2.pickle', 'wb')
-pickle.dump(test_df, f)
+pickle.dumps(test_df, f)
 f.close()
 
 #################################
@@ -137,11 +137,11 @@ test_orig =  pd.read_csv('../../input/test.csv', header=0)
 
 print('loading F2 features....')
 f = open('train_F2.pickle', 'rb')
-train_df = pickle.load(f)
+train_df = pickle.loads(f)
 f.close()
 
 f = open('test_F2.pickle', 'rb')
-test_df = pickle.load(f)
+test_df = pickle.loads(f)
 f.close()
 
 ###############################################################################
@@ -160,11 +160,11 @@ del train_1, test_1, train_2, test_2
 print('saving data....')
 
 f = open('train_F3.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F3.pickle', 'wb')
-pickle.dump(test_df, f)
+pickle.dumps(test_df, f)
 f.close()
 
 #################################
@@ -173,11 +173,11 @@ f.close()
 
 print('loading F3 features....')
 f = open('train_F3.pickle', 'rb')
-train_df = pickle.load(f)
+train_df = pickle.loads(f)
 f.close()
 
 f = open('test_F3.pickle', 'rb')
-test_df = pickle.load(f)
+test_df = pickle.loads(f)
 f.close()
 
 ###############################################################################
@@ -301,11 +301,11 @@ train_df[cols].corr()
 print('saving data....')
 
 f = open('train_F4.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F4.pickle', 'wb')
-pickle.dump(test_df, f)
+pickle.dumps(test_df, f)
 f.close()
 
 
@@ -518,11 +518,11 @@ test_df['kur_q2vec'] = [kurtosis(x) for x in np.nan_to_num(question2_vectors)]
 print('saving data....')
 
 f = open('train_F5_tmp.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F5_tmp.pickle', 'wb')
-pickle.dump(test_df, f)
+pickle.dumps(test_df, f)
 f.close()
 
 # Clean features
@@ -543,29 +543,29 @@ test_df.loc[:, 'jaccard_distance'].fillna(test_df['jaccard_distance'].mean(), in
 test_df.loc[:, 'braycurtis_distance'].fillna(test_df['braycurtis_distance'].mean(), inplace=True)
 
 f = open('train_F5_tmp_clean.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F5_tmp_clean.pickle', 'wb')
-pickle.dump(test_df, f)
+pickle.dumps(test_df, f)
 f.close()
 
 ################################# Join dataframes to complete feature set #####
 
 f = open('train_F4.pickle', 'rb')
-train_F4 = pickle.load(f)
+train_F4 = pickle.loads(f)
 f.close()
 
 f = open('test_F4.pickle', 'rb')
-test_F4 = pickle.load(f)
+test_F4 = pickle.loads(f)
 f.close()
 
 f = open('train_F5_tmp_clean.pickle', 'rb')
-train_df = pickle.load(f)
+train_df = pickle.loads(f)
 f.close()
 
 f = open('test_F5_tmp_clean.pickle', 'rb')
-test_df = pickle.load(f)
+test_df = pickle.loads(f)
 f.close()
 
 new_feats = ['len_char_q1', 'len_char_q2', 'len_word_q1', 'len_word_q2',
@@ -579,11 +579,11 @@ train_F4 = train_F4.combine_first(train_df[new_feats])
 test_F4 = test_F4.combine_first(test_df[new_feats])
 
 f = open('train_F5.pickle', 'wb')
-pickle.dump(train_F4, f)
+pickle.dumps(train_F4, f)
 f.close()
 
 f = open('test_F5.pickle', 'wb')
-pickle.dump(test_F4, f, protocol=4)
+pickle.dumps(test_F4, f, protocol=4)
 f.close()
 
 #################################
@@ -612,22 +612,22 @@ train_orig['q1_q2_intersect'] = train_orig.apply(q1_q2_intersect, axis=1, raw=Tr
 test_orig['q1_q2_intersect'] = test_orig.apply(q1_q2_intersect, axis=1, raw=True)
 
 f = open('train_F5.pickle', 'rb')
-train_df = pickle.load(f)
+train_df = pickle.loads(f)
 f.close()
 
 f = open('test_F5.pickle', 'rb')
-test_df = pickle.load(f)
+test_df = pickle.loads(f)
 f.close()
 
 train_df['q1_q2_intersect'] = train_orig['q1_q2_intersect']
 test_df['q1_q2_intersect'] = test_orig['q1_q2_intersect']
 
 f = open('train_F6.pickle', 'wb')
-pickle.dump(train_df, f)
+pickle.dumps(train_df, f)
 f.close()
 
 f = open('test_F6.pickle', 'wb')
-pickle.dump(test_df, f, protocol=4)
+pickle.dumps(test_df, f, protocol=4)
 f.close()
 
 #################################
@@ -910,11 +910,11 @@ train_df = train_df[unique_cols]
 test_df = test_df[unique_cols]
 
 f = open('train_F6.pickle', 'rb')
-train_df2 = pickle.load(f)
+train_df2 = pickle.loads(f)
 f.close()
 
 f = open('test_F6.pickle', 'rb')
-test_df2 = pickle.load(f)
+test_df2 = pickle.loads(f)
 f.close()
 
 train_df2 = train_df2.combine_first(train_df)
@@ -923,11 +923,11 @@ test_df2 = test_df2.combine_first(test_df)
 del train_df, test_df
 
 f = open('train_F8.pickle', 'wb')
-pickle.dump(train_df2, f)
+pickle.dumps(train_df2, f)
 f.close()
 
 f = open('test_F8.pickle', 'wb')
-pickle.dump(test_df2, f, protocol=4)
+pickle.dumps(test_df2, f, protocol=4)
 f.close()
 
 #################################
@@ -1065,11 +1065,11 @@ feat_names = ['cosine_distance2', 'cityblock_distance2', 'jaccard_distance2',
 del question1_vectors, question2_vectors
 
 f = open('train_F8.pickle', 'rb')
-train_df2 = pickle.load(f)
+train_df2 = pickle.loads(f)
 f.close()
 
 f = open('test_F8.pickle', 'rb')
-test_df2 = pickle.load(f)
+test_df2 = pickle.loads(f)
 f.close()
 
 train_df2 = pd.concat([train_df2, train_df[feat_names]], axis=1)

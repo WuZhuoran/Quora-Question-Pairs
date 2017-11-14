@@ -1,3 +1,9 @@
+# pickle
+*.pickle
+
+# txt
+*.txt
+
 # folder
 .idea/
 

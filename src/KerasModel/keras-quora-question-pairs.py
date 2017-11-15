@@ -15,7 +15,7 @@ from keras import backend as K
 from sklearn.model_selection import train_test_split
 
 # Initialize global variables
-KERAS_DATASETS_DIR = expanduser('')
+KERAS_DATASETS_DIR = expanduser('/')
 QUESTION_PAIRS_FILE_URL = 'http://qim.ec.quoracdn.net/quora_duplicate_questions.tsv'
 QUESTION_PAIRS_FILE = 'quora_duplicate_questions.tsv'
 GLOVE_ZIP_FILE_URL = 'http://nlp.stanford.edu/data/glove.840B.300d.zip'
@@ -77,14 +77,14 @@ else:
     print("Words in index: %d" % len(word_index))
 
     # Download and process GloVe embeddings
-    if not exists(KERAS_DATASETS_DIR + GLOVE_ZIP_FILE):
+    if not exists(GLOVE_ZIP_FILE):
         zipfile = ZipFile(get_file(GLOVE_ZIP_FILE, GLOVE_ZIP_FILE_URL))
         zipfile.extract(GLOVE_FILE, path=KERAS_DATASETS_DIR)
 
     print("Processing", GLOVE_FILE)
 
     embeddings_index = {}
-    with open(KERAS_DATASETS_DIR + GLOVE_FILE, encoding='utf-8') as f:
+    with open(GLOVE_FILE, encoding='utf-8') as f:
         for line in f:
             values = line.split(' ')
             word = values[0]

@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 # Initialize global variables
 KERAS_DATASETS_DIR = expanduser('../../input/')
 QUESTION_PAIRS_FILE_URL = 'http://qim.ec.quoracdn.net/quora_duplicate_questions.tsv'
-QUESTION_PAIRS_FILE = 'quora_duplicate_questions.csv'
+QUESTION_PAIRS_FILE = 'train.csv'
 GLOVE_ZIP_FILE_URL = 'http://nlp.stanford.edu/data/glove.840B.300d.zip'
 GLOVE_ZIP_FILE = '../../input/glove.840B.300d.zip'
 GLOVE_FILE = '../../input/glove.840B.300d.txt'

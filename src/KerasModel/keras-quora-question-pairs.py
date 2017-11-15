@@ -15,17 +15,17 @@ from keras import backend as K
 from sklearn.model_selection import train_test_split
 
 # Initialize global variables
-KERAS_DATASETS_DIR = expanduser('../../input/')
+KERAS_DATASETS_DIR = expanduser('')
 QUESTION_PAIRS_FILE_URL = 'http://qim.ec.quoracdn.net/quora_duplicate_questions.tsv'
 QUESTION_PAIRS_FILE = 'quora_duplicate_questions.tsv'
 GLOVE_ZIP_FILE_URL = 'http://nlp.stanford.edu/data/glove.840B.300d.zip'
 GLOVE_ZIP_FILE = '../../input/glove.840B.300d.zip'
 GLOVE_FILE = '../../input/glove.840B.300d.txt'
-Q1_TRAINING_DATA_FILE = '../../input/q1_train.npy'
-Q2_TRAINING_DATA_FILE = '../../input/q2_train.npy'
-LABEL_TRAINING_DATA_FILE = '../../input/label_train.npy'
-WORD_EMBEDDING_MATRIX_FILE = '../../input/word_embedding_matrix.npy'
-NB_WORDS_DATA_FILE = '../../input/nb_words.json'
+Q1_TRAINING_DATA_FILE = 'q1_train.npy'
+Q2_TRAINING_DATA_FILE = 'q2_train.npy'
+LABEL_TRAINING_DATA_FILE = 'label_train.npy'
+WORD_EMBEDDING_MATRIX_FILE = 'word_embedding_matrix.npy'
+NB_WORDS_DATA_FILE = 'nb_words.json'
 MAX_NB_WORDS = 200000
 MAX_SEQUENCE_LENGTH = 25
 EMBEDDING_DIM = 300

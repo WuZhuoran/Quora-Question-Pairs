@@ -15,7 +15,7 @@ from keras import backend as K
 from sklearn.model_selection import train_test_split
 
 # Initialize global variables
-KERAS_DATASETS_DIR = expanduser('/')
+KERAS_DATASETS_DIR = expanduser('')
 QUESTION_PAIRS_FILE_URL = 'http://qim.ec.quoracdn.net/quora_duplicate_questions.tsv'
 QUESTION_PAIRS_FILE = 'quora_duplicate_questions.tsv'
 GLOVE_ZIP_FILE_URL = 'http://nlp.stanford.edu/data/glove.840B.300d.zip'
@@ -49,15 +49,15 @@ if exists(Q1_TRAINING_DATA_FILE) and exists(Q2_TRAINING_DATA_FILE) and exists(LA
         nb_words = json.load(f)['nb_words']
 else:
     # Else download and extract questions pairs data
-    if not exists(KERAS_DATASETS_DIR + QUESTION_PAIRS_FILE):
-        get_file(QUESTION_PAIRS_FILE, QUESTION_PAIRS_FILE_URL)
+    # if not exists(QUESTION_PAIRS_FILE):
+    # get_file(QUESTION_PAIRS_FILE, QUESTION_PAIRS_FILE_URL)
 
     print("Processing", QUESTION_PAIRS_FILE)
 
     question1 = []
     question2 = []
     is_duplicate = []
-    with open(KERAS_DATASETS_DIR + QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
+    with open(QUESTION_PAIRS_FILE, encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, delimiter='\t')
         for row in reader:
             question1.append(row['question1'])

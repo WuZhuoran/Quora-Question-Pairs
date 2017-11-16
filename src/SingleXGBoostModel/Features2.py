@@ -89,7 +89,7 @@ train_df = train_df.combine_first(train_2)
 test_df  = test_df.combine_first(test_2)
 del train_1, test_1, train_2, test_2
 
-print('saving data....')
+print('saving data train_F2....')
 f = open('train_F2.pickle', 'wb') 
 pickle.dump(train_df, f)
 f.close()

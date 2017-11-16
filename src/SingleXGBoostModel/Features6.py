@@ -40,7 +40,7 @@ f.close()
 train_df['q1_q2_intersect'] = train_orig['q1_q2_intersect'] 
 test_df['q1_q2_intersect'] = test_orig['q1_q2_intersect'] 
 
-        
+print('saving data train_F6....')
 import pickle
 f = open('train_F6.pickle', 'wb') 
 pickle.dump(train_df, f)

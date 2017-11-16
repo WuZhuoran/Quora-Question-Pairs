@@ -10,10 +10,10 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import gensim
 from fuzzywuzzy import fuzz
 from nltk.corpus import stopwords
-from tqdm import tqdm
 from scipy.stats import skew, kurtosis
 from scipy.spatial.distance import cosine, cityblock, jaccard, canberra, euclidean, minkowski, braycurtis
 from nltk import word_tokenize
+import nltk
 import time
 from dask.dataframe import from_pandas
 import dask
@@ -27,6 +27,9 @@ stop_words = stopwords.words('english')
 #print('loading original data.....')
 train_df =  pd.read_csv('../../input/train.csv', header=0)
 test_df =  pd.read_csv('../../input/test.csv', header=0)
+
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 """
 Detecting duplicate quora questions
@@ -136,7 +139,7 @@ error_count = 0
 for i, q in tqdm(enumerate(train_df.question1.values)):
     question1_vectors[i, :] = sent2vec(q)
 
-question2_vectors  = np.zeros((train_df.shape[0], 300))
+question2_vectors = np.zeros((train_df.shape[0], 300))
 for i, q in tqdm(enumerate(train_df.question2.values)):
     question2_vectors[i, :] = sent2vec(q)
      
@@ -272,12 +275,14 @@ new_feats= ['len_char_q1', 'len_char_q2', 'len_word_q1', 'len_word_q2',
 train_F4 = train_F4.combine_first(train_df[new_feats])
 test_F4 = test_F4.combine_first(test_df[new_feats])
 
+print('saving data train_F5....')
+
 f = open('train_F5.pickle', 'wb') 
 pickle.dump(train_F4, f)
 f.close()
 
 f = open('test_F5.pickle', 'wb') 
-pickle.dump(test_F4, f , protocol=4)
+pickle.dump(test_F4, f, protocol=4)
 f.close()
 
 

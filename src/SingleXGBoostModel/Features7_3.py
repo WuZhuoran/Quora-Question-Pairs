@@ -120,6 +120,7 @@ b = db.from_sequence(tmp, npartitions=4)
 with ProgressBar():
     data_out = b.map(lambda x: graph_feat(x, g, n=3)).compute(get=dask.multiprocessing.get)
 
+print('saving data train_F7....')
 
 f = open('train_F7_raw.pickle', 'wb') 
 pickle.dump(data_out, f)

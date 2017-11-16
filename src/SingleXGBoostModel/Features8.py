@@ -296,6 +296,7 @@ test_df2 = test_df2.combine_first(test_df)
 
 del train_df, test_df
 
+print('saving data train_F8....')
  
 f = open('train_F8.pickle', 'wb') 
 pickle.dump(train_df2, f)

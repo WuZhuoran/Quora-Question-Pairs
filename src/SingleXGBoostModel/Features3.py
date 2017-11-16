@@ -38,7 +38,7 @@ test_df  = test_df.combine_first(test_2)
 del train_1, test_1, train_2, test_2
 
 ###############################################################################
-print('saving data....')
+print('saving data train_F3....')
 
 import pickle
 f = open('train_F3.pickle', 'wb') 

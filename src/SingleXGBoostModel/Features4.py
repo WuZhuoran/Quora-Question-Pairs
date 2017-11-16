@@ -141,7 +141,7 @@ cols = ['nBayes1_add','nBayes2_add','nBayes3_add',
 
 train_df[cols].corr()
 
-print('saving data....')
+print('saving data train_F4....')
 
 f = open('train_F4.pickle', 'wb') 
 pickle.dump(train_df, f)

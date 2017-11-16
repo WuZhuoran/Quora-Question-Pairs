@@ -1,5 +1,8 @@
 # pickle
 *.pickle
+*.npy
+*.json
+
 
 # txt
 *.txt

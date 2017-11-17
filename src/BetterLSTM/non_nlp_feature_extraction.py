@@ -1,7 +1,8 @@
 from collections import defaultdict
+
+import networkx as nx
 import numpy as np
 import pandas as pd
-import networkx as nx
 
 NB_CORES = 10
 FREQ_UPPER_BOUND = 100
@@ -75,6 +76,7 @@ def get_freq_features(df, frequency_map):
     df["freq1"] = df["qid1"].map(lambda x: min(frequency_map[x], FREQ_UPPER_BOUND))
     df["freq2"] = df["qid2"].map(lambda x: min(frequency_map[x], FREQ_UPPER_BOUND))
     return df
+
 
 train_df = pd.read_csv("../../input/train.csv")
 test_df = pd.read_csv("../../input/test.csv")

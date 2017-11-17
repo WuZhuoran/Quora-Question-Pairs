@@ -1,22 +1,21 @@
 import re
-import pandas as pd
+
+import nltk
 import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import StratifiedKFold
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
+import pandas as pd
+from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.layers import Dense, Input, LSTM, Embedding, Dropout
 from keras.layers.core import Lambda
 from keras.layers.merge import concatenate, add, multiply
-from keras.models import Model
-from keras.layers.normalization import BatchNormalization
-from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras.layers.noise import GaussianNoise
-from nltk.stem.wordnet import WordNetLemmatizer
+from keras.layers.normalization import BatchNormalization
+from keras.models import Model
+from keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import Tokenizer
 from nltk.corpus import stopwords
-import nltk
-import sys
-
+from nltk.stem.wordnet import WordNetLemmatizer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import StratifiedKFold
 
 np.random.seed(0)
 WNL = WordNetLemmatizer()
@@ -148,7 +147,6 @@ for word, i in word_index.items():
     if embedding_vector is not None:
         embedding_matrix[i] = embedding_vector
 
-
 print("Train features are being merged with NLP and Non-NLP features...")
 train_nlp_features = pd.read_csv("../../input/nlp_features_train.csv")
 train_non_nlp_features = pd.read_csv("../../input/non_nlp_features_train.csv")
@@ -163,7 +161,6 @@ test_data_2 = pad_sequences(tokenizer.texts_to_sequences(q2s_test), maxlen=MAX_S
 test_nlp_features = pd.read_csv("../../input/nlp_features_test.csv")
 test_non_nlp_features = pd.read_csv("../../input/non_nlp_features_test.csv")
 features_test = np.hstack((test_q_features, test_nlp_features, test_non_nlp_features))
-
 
 skf = StratifiedKFold(n_splits=NUM_FOLDS, shuffle=True)
 model_count = 0
@@ -238,5 +235,3 @@ for idx_train, idx_val in skf.split(train["is_duplicate"], train["is_duplicate"]
     submission.to_csv("predictions/preds" + str(model_count) + ".csv", index=False)
 
     model_count += 1
-
-
